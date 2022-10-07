@@ -6,49 +6,48 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-  } from '@mui/material';
-  import Link from '@mui/material/Link';
-  import React, { useEffect, useState } from 'react';
-  import atcoderLogo from '../../assets/atcoder.png';
-  import codechefLogo from '../../assets/codechef.png';
-  import codeforcesLogo from '../../assets/codeforces.png';
-  import googleLogo from '../../assets/google.png';
-  import hackerearthLogo from '../../assets/hackerearth.png';
-  import hackerrankLogo from '../../assets/hackerrank.png';
-  import leetcodeLogo from '../../assets/leetcode.png';
-  import topcoderLogo from '../../assets/topcoder.png';
-  import placeholderLogo from '../../assets/placeholder.png';
-  import './Contests.css';
-  import Button from '@mui/material/Button';
-  import ButtonGroup from '@mui/material/ButtonGroup';
-  import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-  import ClickAwayListener from '@mui/material/ClickAwayListener';
-  import Grow from '@mui/material/Grow';
-  import Popper from '@mui/material/Popper';
-  import MenuItem from '@mui/material/MenuItem';
-  import MenuList from '@mui/material/MenuList';
-  import Colors from '../../utils/Colors';
+} from '@mui/material';
+import Link from '@mui/material/Link';
+import React, { useEffect, useRef, useState } from 'react';
+import atcoderLogo from '../../assets/atcoder.png';
+import codechefLogo from '../../assets/codechef.png';
+import codeforcesLogo from '../../assets/codeforces.png';
+import googleLogo from '../../assets/google.png';
+import hackerearthLogo from '../../assets/hackerearth.png';
+import hackerrankLogo from '../../assets/hackerrank.png';
+import leetcodeLogo from '../../assets/leetcode.png';
+import topcoderLogo from '../../assets/topcoder.png';
+import placeholderLogo from '../../assets/placeholder.png';
+import './Contests.css';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Grow from '@mui/material/Grow';
+import Popper from '@mui/material/Popper';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import Colors from '../../utils/Colors';
 
 const Upcoming = ({ darkmode }) => {
 
-    const [contests, setContests] = useState([]);
-    const [filterContests, setFilterContests] = useState();
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [refresh, setRefresh] = useState(false);
-    const [temp, setTemp] = useState([])
+    const [contests, setContests] = useState([])
+    const [filterContests, setFilterContests] = useState([])
+    const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [refresh, setRefresh] = useState(false)
+    
+    const anchorRef = useRef(null);
+    const [open, setOpen] = useState(false);
+    const [selectedIndex, setSelectedIndex] = useState(1);
     var options = ["ALL"];
-
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
 
     const fetchAllContests = async () => {
         try {
             const response = await fetch(`https://kontests.net/api/v1/all`);
             const json = await response.json();
             setContests([...json]);
-            setTemp([...json])
+            setFilterContests([...json])
         } catch (e) {
             console.log(e);
             setError(e);
@@ -61,17 +60,11 @@ const Upcoming = ({ darkmode }) => {
     contests.map((i) => {
         return options.push(i.site);
     })
-    options = options.filter((v, i, a) => a.indexOf(v) === i);
-    console.log(options);
+    options = options.filter((v, i, a) => a.indexOf(v) === i)
+
     const onRefresh = () => {
         setRefresh(true);
         fetchAllContests();
-    };
-
-
-
-    const handleClick = () => {
-        console.info(`You clicked ${options[selectedIndex]}`);
     };
 
     const handleMenuItemClick = (event, index, option) => {
@@ -79,16 +72,15 @@ const Upcoming = ({ darkmode }) => {
         console.log(option);
         setOpen(false);
         if (option != "ALL") {
-            setTemp(contests.filter((i) => {
+            setFilterContests(contests.filter((i) => {
                 console.log(i.site, option);
                 return i.site == option;
             }))
         }
         else {
-            setTemp(contests);
+            setFilterContests(contests);
         }
     };
-
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -118,7 +110,6 @@ const Upcoming = ({ darkmode }) => {
                             <TableCell style={{ fontWeight: '700' }}>Name</TableCell>
                             <TableCell align="right" style={{ fontWeight: '700' }}>
                                 Site :  <ButtonGroup variant="" color='info' ref={anchorRef} aria-label="split button">
-                                    {/* <Button size='small' onClick={handleClick}>{options[selectedIndex]}</Button> */}
                                     <Button
                                         size="small"
                                         aria-controls={open ? 'split-button-menu' : undefined}
@@ -174,7 +165,7 @@ const Upcoming = ({ darkmode }) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {temp.map((item) => (
+                        {filterContests.map((item) => (
                             <TableRow
                                 key={keyGenerator()}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -196,10 +187,11 @@ const Upcoming = ({ darkmode }) => {
                                             alt=""
                                             width={18}
                                             height={18}
-                                            style={{ marginRight: 8, filter: (item.site === "CodeChef" && darkmode) ? "invert(1)" : "invert(0)" }}
+                                            style={{ marginRight: 10, filter: (item.site === "CodeChef" && darkmode) ? "invert(1)" : "invert(0)" }}
                                         />
                                         <Link
                                             href={item.url}
+                                            target="_blank"
                                             style={{ color: Colors.BLUE1 }}
                                         >
                                             <text style={{ color: darkmode ? "white" : Colors.BLUE1 }}>
@@ -227,6 +219,6 @@ const Upcoming = ({ darkmode }) => {
             </TableContainer>
         </div>
     );
-};
+}
 
 export default Upcoming;

@@ -1,4 +1,4 @@
-import {React,useState,useEffect} from "react";
+import {React, useState} from "react";
 import Header from "../../components/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Upcoming from "../Contests/Upcoming";
@@ -16,16 +16,19 @@ const lightTheme = createTheme({
     mode: "light",
   },
 });
+
 const Home = () => {
-  const [darkmode, setDarkmode] = useState(false);
+  
+  const [darkmode, setDarkmode] = useState(false)
+
   return (
     <ThemeProvider theme={darkmode ? darkTheme : lightTheme}>
       <CssBaseline />
       <Router>
-        <Header darkmode={darkmode} setDarkmode={setDarkmode}/>
+        <Header darkmode={darkmode} setDarkmode={setDarkmode} />
         <Routes>
-            <Route path="/" element={<Upcoming darkmode={darkmode} />} />
-            <Route path="/ongoing" element={<Ongoing />} />
+          <Route path="/" element={<Upcoming darkmode={darkmode} />} />
+          <Route path="/ongoing" element={<Ongoing />} />
         </Routes>
       </Router>
     </ThemeProvider>
