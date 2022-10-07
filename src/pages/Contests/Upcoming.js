@@ -1,7 +1,16 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import google from "../../assets/google.png";
+import atcoderLogo from "../../assets/atcoder.png";
+import codechefLogo from "../../assets/codechef.png";
+import codeforcesLogo from "../../assets/codeforces.png";
+import googleLogo from "../../assets/google.png";
+import hackerearthLogo from "../../assets/hackerearth.png";
+import hackerrankLogo from "../../assets/hackerrank.png";
+import leetcodeLogo from "../../assets/leetcode.png";
+import topcoderLogo from "../../assets/topcoder.png";
+import placeholderLogo from "../../assets/placeholder.png";
 import "./Contests.css";
+import Colors from "../../utils/Colors";
 
 const Upcoming = () => {
 
@@ -42,11 +51,11 @@ const Upcoming = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell align="right">Duration</TableCell>
-                            <TableCell align="right">Site</TableCell>
-                            <TableCell align="right">Start</TableCell>
-                            <TableCell align="right">End</TableCell>
+                            <TableCell style={{fontWeight: '700'}}>Name</TableCell>
+                            <TableCell align="right" style={{fontWeight: '700'}}>Site</TableCell>
+                            <TableCell align="right" style={{fontWeight: '700'}}>Start</TableCell>
+                            <TableCell align="right" style={{fontWeight: '700'}}>End</TableCell>
+                            <TableCell align="right" style={{fontWeight: '700'}}>Duration</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -54,17 +63,43 @@ const Upcoming = () => {
                             <TableRow
                                 key={keyGenerator()}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                style={{backgroundColor: item.in_24_hours === "Yes" ? Colors.GREEN : 'white'}}
                             >
                                 <TableCell component="th" scope="row">
                                     <div style={{alignItems: 'center', display: 'flex'}}>
-                                        <img src={google} alt="" width={16} height={16}/>
-                                        <text>{item.name}</text>
+                                        <img 
+                                            src={item.site === "CodeChef" ? codechefLogo :
+                                                    item.site === "CodeForces" ? codeforcesLogo :
+                                                    item.site === "AtCoder" ? atcoderLogo :
+                                                    item.site === "TopCoder" ? topcoderLogo :
+                                                    item.site === "HackerRank" ? hackerrankLogo :
+                                                    item.site === "HackerEarth" ? hackerearthLogo :
+                                                    item.site === "LeetCode" ? leetcodeLogo :
+                                                    item.site === "Kick Start" ? googleLogo :
+                                                    placeholderLogo
+                                                }
+                                            alt="" 
+                                            width={18} 
+                                            height={18}
+                                            style={{marginRight: 8}}
+                                        />
+                                        <text style={{color: Colors.BLUE1}}>
+                                            {item.name}
+                                        </text>
                                     </div>
                                 </TableCell>
-                                <TableCell align="right">{item.duration}</TableCell>
-                                <TableCell align="right">{item.site}</TableCell>
-                                <TableCell align="right">{item.start_time}</TableCell>
-                                <TableCell align="right">{item.end_time}</TableCell>
+                                <TableCell align="right">
+                                    {item.site}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {new Date(item.start_time).toLocaleString("en-IN", {timeZone: 'Asia/Kolkata'})}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {new Date(item.end_time).toLocaleString("en-IN", {timeZone: 'Asia/Kolkata'})}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {new Date(item.duration * 1000).toISOString().substr(11, 8)}
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
