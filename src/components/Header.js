@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
-        <AppBar style={{ background: '#F8F8F8', paddingLeft: '15%', paddingRight: '15%', height: 54, justifyContent: 'center' }} 
+        <AppBar style={{ background: '#F8F8F8', paddingLeft: '11%', paddingRight: '11%', height: 54, justifyContent: 'center' }} 
             position="static" 
             component="nav"
             elevation={1}
