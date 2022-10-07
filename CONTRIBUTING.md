@@ -1,4 +1,4 @@
-# Contributing Guidelines for sidejourney 👨‍💻
+# Contributing Guidelines for UpCoding-Web 👨‍💻
 
 ## 👨‍💻 Prerequisite Skills to Contribute
 
@@ -30,13 +30,13 @@
 **2.** Clone your new fork of the repository in the terminal/CLI on your computer with the following command:
 
 ```bash
-git clone https://github.com/<your-github-username>/sidejourney
+git clone https://github.com/<your-github-username>/UpCoding-Web
 ```
 
 **3.** Navigate to the newly created LinkFree project directory:
 
 ```bash
-cd sidejourney
+cd UpCoding-Web
 ```
 
 **4.** Create a new branch:
