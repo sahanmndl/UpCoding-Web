@@ -5,5 +5,6 @@ export default {
     BLUE3: "#007AFF",
     GRAY1: "#777777",
     GRAY2: "#A1A1A1",
-    GRAY3: "#F8F8F8"
+    GRAY3: "#F8F8F8",
+    NIGHT_GREEN: "#1DB954",
 }

@@ -21,7 +21,7 @@ import placeholderLogo from '../../assets/placeholder.png';
 import './Contests.css';
 import Colors from '../../utils/Colors';
 
-const Upcoming = () => {
+const Upcoming = ({darkmode}) => {
 
     const [contests, setContests] = useState([]);
     const [filterContests, setFilterContests] = useState();
@@ -59,7 +59,7 @@ const Upcoming = () => {
 
     return (
         <div className="container">
-            <TableContainer component={Paper} style={{width: '90%'}}>
+            <TableContainer component={Paper} style={{width: '90%', boxShadow:darkmode? '0 0 4px #757575':''}}>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -75,7 +75,7 @@ const Upcoming = () => {
                             <TableRow
                                 key={keyGenerator()}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                style={{backgroundColor: item.in_24_hours === "Yes" ? Colors.GREEN : 'white'}}
+                                style={{backgroundColor: item.in_24_hours === "Yes" ? (darkmode?Colors.NIGHT_GREEN:Colors.GREEN) : null}}
                             >
                                 <TableCell component="th" scope="row">
                                     <div style={{alignItems: 'center', display: 'flex'}}>
@@ -93,13 +93,15 @@ const Upcoming = () => {
                                             alt="" 
                                             width={18} 
                                             height={18}
-                                            style={{marginRight: 8}}
+                                            style={{marginRight: 8,filter:(item.site === "CodeChef" && darkmode)?"invert(1)":"invert(0)" }}
                                         />
                                         <Link
                                             href={item.url}
                                             style={{ color: Colors.BLUE1 }}
                                         >
+                                            <text style={{color: darkmode?"white":Colors.BLUE1}}>
                                             {item.name}
+                                            </text>
                                         </Link>
                                     </div>
                                 </TableCell>
