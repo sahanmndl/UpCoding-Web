@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![image](https://user-images.githubusercontent.com/88237080/194626047-189e0647-339b-49dd-b8ad-64158ca6a787.png)
+
 ## Available Scripts
 
 In the project directory, you should install a package:
@@ -27,3 +29,5 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+
