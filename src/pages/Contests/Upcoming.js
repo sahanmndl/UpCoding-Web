@@ -39,15 +39,15 @@ const Upcoming = ({ darkmode }) => {
     
     const anchorRef = useRef(null);
     const [open, setOpen] = useState(false);
-    const [selectedIndex, setSelectedIndex] = useState(1);
+    const [selectedIndex, setSelectedIndex] = useState(0);
     var options = ["ALL"];
 
     const fetchAllContests = async () => {
         try {
             const response = await fetch(`https://kontests.net/api/v1/all`);
             const json = await response.json();
-            setContests([...json]);
-            setFilterContests([...json])
+            setContests([...json].filter(contest => contest.status === "BEFORE"));
+            setFilterContests([...json].filter(contest => contest.status === "BEFORE"))
         } catch (e) {
             console.log(e);
             setError(e);
@@ -71,13 +71,12 @@ const Upcoming = ({ darkmode }) => {
         setSelectedIndex(index);
         console.log(option);
         setOpen(false);
-        if (option != "ALL") {
+        if (option !== "ALL") {
             setFilterContests(contests.filter((i) => {
                 console.log(i.site, option);
-                return i.site == option;
+                return i.site === option;
             }))
-        }
-        else {
+        } else {
             setFilterContests(contests);
         }
     };
