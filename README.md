@@ -24,7 +24,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## `Contribute`
+## Contribute
 
 - Fork this repository (Click the Fork button in the top right of this page, click your Profile Image)
 - Clone your fork down to your local machine
