@@ -28,7 +28,7 @@ const Home = () => {
         <Header darkmode={darkmode} setDarkmode={setDarkmode} />
         <Routes>
           <Route path="/" element={<Upcoming darkmode={darkmode} />} />
-          <Route path="/ongoing" element={<Ongoing />} />
+          <Route path="/ongoing" element={<Ongoing darkmode={darkmode} />} />
         </Routes>
       </Router>
     </ThemeProvider>
