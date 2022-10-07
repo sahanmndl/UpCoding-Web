@@ -1,4 +1,6 @@
 .container {
     padding-left: 15%;
     padding-right: 15%;
+    width: 100vh;
+    max-width: 100vw;
 }
