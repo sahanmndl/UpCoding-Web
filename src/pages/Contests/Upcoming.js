@@ -193,9 +193,9 @@ const Upcoming = ({ darkmode }) => {
                                             target="_blank"
                                             style={{ color: Colors.BLUE1 }}
                                         >
-                                            <text style={{ color: darkmode ? "white" : Colors.BLUE1 }}>
+                                            <p style={{ color: darkmode ? "white" : Colors.BLUE1,margin:"0px 0px" }}>
                                                 {item.name}
-                                            </text>
+                                            </p>
                                         </Link>
                                     </div>
                                 </TableCell>

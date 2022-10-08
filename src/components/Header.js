@@ -55,17 +55,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     },
 }));
 
-const Header = ({ darkmode, setDarkmode }) => {
-
-    useEffect(() => {
-        setDarkmode(localStorage.getItem("darkmode"));
-    }, [])
-
-    const dark = (e) => {
-        setDarkmode(e.target.checked);
-        localStorage.setItem("darkmode", darkmode);
-    }
-
+const Header = ({ darkmode, toggle }) => {
     return (
         <AppBar
             style={{
@@ -124,7 +114,7 @@ const Header = ({ darkmode, setDarkmode }) => {
                                 <MaterialUISwitch
                                     sx={{ m: 1 }}
                                     checked={darkmode}
-                                    onChange={dark}
+                                    onChange={toggle}
                                 />
                             }
                         />
