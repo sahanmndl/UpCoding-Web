@@ -1,5 +1,7 @@
 # UpCoding
-![image](https://user-images.githubusercontent.com/88237080/194626047-189e0647-339b-49dd-b8ad-64158ca6a787.png)
+
+![Screenshot (7)](https://user-images.githubusercontent.com/76529959/194722032-443708cb-4aa7-4fa7-b77d-0f021c8be0e1.png)
+![Screenshot (8)](https://user-images.githubusercontent.com/76529959/194722042-b977982a-984b-489d-aac4-debbbd604803.png)
 
 Mobile App: (https://github.com/sahanmndl/UpCoding-Demo)
 
