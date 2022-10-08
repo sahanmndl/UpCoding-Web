@@ -154,7 +154,7 @@ const Ongoing = ({ darkmode }) => {
 
     return (
         <div className="container">
-            <TableContainer component={Paper} style={{ width: '90%', boxShadow: darkmode ? '0 0 4px #757575' : '' }}>
+            <TableContainer component={Paper} style={{ width: '100%', boxShadow: darkmode ? '0 0 4px #757575' : '' }}>
                 <Table>
                     <TableHead>
                         <TableRow>
