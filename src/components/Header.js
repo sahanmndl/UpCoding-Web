@@ -1,13 +1,12 @@
 import {React} from "react";
 import { Code, GitHub } from "@mui/icons-material";
 import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Colors from "../utils/Colors";
 import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import {useLocation} from "react-router-dom"
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -57,14 +56,15 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const Header = ({ darkmode, toggle }) => {
-    const location=useLocation();
-    console.log(location.pathname);
+
+    const location = useLocation()
+
     return (
         <AppBar
             style={{
                 background: darkmode ? "" : Colors.GRAY3,
-                paddingLeft: "11.6%",
-                paddingRight: "9.7%",
+                paddingLeft: "7.5%",
+                paddingRight: "5.5%",
                 height: 55,
                 justifyContent: "center",
             }}
@@ -89,18 +89,30 @@ const Header = ({ darkmode, toggle }) => {
                     </Typography>
                 </Box>
                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                    <Tooltip title="View all Upcoming contests" arrow enterDelay={500}>
-                        <Button sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16, 
-                        backgroundColor:location.pathname==="/"?darkmode?Colors.NIGHT_GREEN:Colors.GREEN:null}}>
-                            <Link to="/" style={{ textDecoration: "none", color: darkmode?Colors.WHITE:Colors.GRAY1 }}>
+                <Tooltip title="View all Upcoming contests" arrow enterDelay={500}>
+                        <Button sx={{color: Colors.GRAY1, textTransform: "none", fontSize: 16}}>
+                            <Link 
+                                to="/" 
+                                style={{ 
+                                    textDecoration: "none",
+                                    color: location.pathname==="/" ? darkmode ? 
+                                            Colors.WHITE : Colors.DARK : Colors.GRAY1 
+                                }}
+                            >
                                 Upcoming
                             </Link>
                         </Button>
                     </Tooltip>
                     <Tooltip title="View all Ongoing contests" arrow enterDelay={500}>
-                        <Button sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16,
-                    backgroundColor:location.pathname==="/ongoing"?darkmode?Colors.NIGHT_GREEN:Colors.GREEN:null }}>
-                            <Link to="/ongoing" style={{ textDecoration: "none", color: darkmode?Colors.WHITE:Colors.GRAY1 }}>
+                        <Button sx={{color: Colors.GRAY1, textTransform: "none", fontSize: 16}}>
+                            <Link 
+                                to="/ongoing" 
+                                style={{ 
+                                    textDecoration: "none", 
+                                    color: location.pathname==="/ongoing" ? darkmode ? 
+                                            Colors.WHITE : Colors.DARK : Colors.GRAY1
+                                }}
+                            >
                                 Ongoing
                             </Link>
                         </Button>

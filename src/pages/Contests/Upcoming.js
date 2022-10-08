@@ -12,6 +12,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import atcoderLogo from '../../assets/atcoder.png';
 import codechefLogo from '../../assets/codechef.png';
 import codeforcesLogo from '../../assets/codeforces.png';
+import csacademyLogo from '../../assets/csacademy.png';
 import googleLogo from '../../assets/google.png';
 import hackerearthLogo from '../../assets/hackerearth.png';
 import hackerrankLogo from '../../assets/hackerrank.png';
@@ -106,8 +107,7 @@ const Upcoming = ({ darkmode }) => {
         let seconds = Math.floor(s % 60);
 
         let ans = "";
-        if(years>=1)
-        {
+        if(years >= 1) {
             if(years>1)
                 ans += years + " yrs ";
             else if(years === 1)
@@ -116,35 +116,31 @@ const Upcoming = ({ darkmode }) => {
                 ans += months + " mos";
             else if(months === 1)
                 ans += months + " mo";
-        }
-        else if(months>=1)
-        {
+        } else if(months >= 1) {
             if(months>1)
                 ans += months + " mos ";
             else if(months === 1)
                 ans += months + " mo ";
             if(days>1)
-                ans += days + " d";
+                ans += days + " days";
             else if(days === 1)
-                ans += days + " d";
-        }
-        else if(days>=1)
-        {
-            if(days>1)
+                ans += days + " day";
+        } else if(days >= 1) {
+            if(days > 1)
                 ans += days + " days ";
             else if(days === 1)
                 ans += days + " day ";
-            if(hours>1)
+            if(hours > 1) 
                 ans += hours + " hrs";
             else if(hours === 1)
                 ans += hours + " hr";
-        }
-        else {
+        } else {
             hours = ("0" + hours).slice(-2);
             minutes = ("0" + minutes).slice(-2);
             seconds = ("0" + seconds).slice(-2);
             ans = hours + ":" + minutes + ":" + seconds;
         }
+        
         return ans;
     }
     
@@ -220,25 +216,32 @@ const Upcoming = ({ darkmode }) => {
                             <TableRow
                                 key={keyGenerator()}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                style={{ backgroundColor: item.in_24_hours === "Yes" ? (darkmode ? Colors.NIGHT_GREEN : Colors.GREEN) : null }}
+                                style={{ 
+                                    backgroundColor: item.in_24_hours === "Yes" ? 
+                                        (darkmode ? Colors.NIGHT_GREEN : Colors.GREEN) : null 
+                                }}
                             >
                                 <TableCell component="th" scope="row">
                                     <div style={{ alignItems: 'center', display: 'flex' }}>
                                         <img
                                             src={item.site === "CodeChef" ? codechefLogo :
                                                 item.site === "CodeForces" ? codeforcesLogo :
-                                                    item.site === "AtCoder" ? atcoderLogo :
-                                                        item.site === "TopCoder" ? topcoderLogo :
-                                                            item.site === "HackerRank" ? hackerrankLogo :
-                                                                item.site === "HackerEarth" ? hackerearthLogo :
-                                                                    item.site === "LeetCode" ? leetcodeLogo :
-                                                                        item.site === "Kick Start" ? googleLogo :
-                                                                            placeholderLogo
+                                                item.site === "AtCoder" ? atcoderLogo :
+                                                item.site === "TopCoder" ? topcoderLogo :
+                                                item.site === "HackerRank" ? hackerrankLogo :
+                                                item.site === "HackerEarth" ? hackerearthLogo :
+                                                item.site === "LeetCode" ? leetcodeLogo :
+                                                item.site === "Kick Start" ? googleLogo :
+                                                item.site === "CS Academy" ? csacademyLogo :
+                                                placeholderLogo
                                             }
                                             alt=""
                                             width={18}
                                             height={18}
-                                            style={{ marginRight: 10, filter: (item.site === "CodeChef" && darkmode) ? "invert(1)" : "invert(0)" }}
+                                            style={{ 
+                                                marginRight: 10, 
+                                                filter: (item.site === "CodeChef" && darkmode) ? "invert(1)" : "invert(0)" 
+                                            }}
                                         />
                                         <Link
                                             href={item.url}

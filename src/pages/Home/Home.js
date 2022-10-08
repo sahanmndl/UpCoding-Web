@@ -47,8 +47,20 @@ const Home = () => {
       <CssBaseline />
       <Router>
         <Routes>
-        <Route exact path="/" element={<><Header darkmode={darkmode} toggle={toggle} /> <Upcoming darkmode={darkmode} /></>} />
-          <Route exact path="/ongoing" element={<><Header darkmode={darkmode} toggle={toggle} /> <Ongoing darkmode={darkmode} /></>} />
+          <Route exact path="/" element={
+            <>
+              <Header darkmode={darkmode} toggle={toggle} /> 
+              <Upcoming darkmode={darkmode} />
+            </>
+          }
+          />
+          <Route exact path="/ongoing" element={
+            <>
+              <Header darkmode={darkmode} toggle={toggle} /> 
+              <Ongoing darkmode={darkmode} />
+            </>
+          }
+          />
           <Route exact path="/*" element={<Error/>} />
         </Routes>
       </Router>
