@@ -25,7 +25,7 @@
 
 ## ⭐ HOW TO MAKE A PULL REQUEST:
 
-**1.** Start by making a Fork of the [**YourQuotes**](https://github.com/sahanmndl/UpCoding-Web) repository. Click on the <a href="https://github.com/sahanmndl/UpCoding-Web/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a>Fork symbol at the top right corner.
+**1.** Start by making a Fork of the [**UpCoding-Web**](https://github.com/sahanmndl/UpCoding-Web) repository. Click on the <a href="https://github.com/sahanmndl/UpCoding-Web/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a>Fork symbol at the top right corner.
 
 **2.** Clone your new fork of the repository in the terminal/CLI on your computer with the following command:
 
@@ -73,9 +73,9 @@ git push origin YourBranchName
 
 **8.** Create a [Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)!
 
-**9.** **Congratulations!** You've made your first contribution to [**YourQuotes**](https://github.com/sahanmndl/UpCoding-Web/graphs/contributors)! 🙌🏼
+**9.** **Congratulations!** You've made your first contribution to [**UpCoding-Web**](https://github.com/sahanmndl/UpCoding-Web/graphs/contributors)! 🙌🏼
 
-**_:trophy: After this, the maintainers will review the PR and will merge it if it helps move the YourQuotes project forward. Otherwise, it will be given constructive feedback and suggestions for the changes needed to add the PR to the codebase._**
+**_:trophy: After this, the maintainers will review the PR and will merge it if it helps move the UpCoding project forward. Otherwise, it will be given constructive feedback and suggestions for the changes needed to add the PR to the codebase._**
 
 ---
 
@@ -100,5 +100,3 @@ git push origin YourBranchName
 In order to discuss changes, you are welcome to [open an issue](https://github.com/sahanmndl/UpCoding-Web/issues/new/choose) about what you would like to contribute. Enhancements are always encouraged and appreciated.
 
 ## All the best! 🥇
-
-[![built with love](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/sahanmndl/UpCoding-Web)
