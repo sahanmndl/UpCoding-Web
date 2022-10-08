@@ -106,7 +106,7 @@ const Ongoing = ({ darkmode }) => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell style={{ fontWeight: '700' }}>Name</TableCell>
+                            <TableCell style={{ fontWeight: '700' }}>Ongoing Contests</TableCell>
                             <TableCell align="right" style={{ fontWeight: '700' }}>
                                 Site :  <ButtonGroup variant="" color='info' ref={anchorRef} aria-label="split button">
                                     <Button

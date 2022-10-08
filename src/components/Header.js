@@ -1,6 +1,6 @@
 import {React, useEffect} from "react";
-import { Code } from "@mui/icons-material";
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { Code, GitHub } from "@mui/icons-material";
+import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Colors from "../utils/Colors";
 import { styled } from '@mui/material/styles';
@@ -96,16 +96,28 @@ const Header = ({ darkmode, setDarkmode }) => {
                     </Typography>
                 </Box>
                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                    <Button sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16}}>
-                        <Link to="/" style={{ textDecoration: "none", color: Colors.GRAY1 }}>
-                            Upcoming
-                        </Link>
-                    </Button>
-                    <Button sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16, marginRight: 4 }}>
-                        <Link to="/ongoing" style={{ textDecoration: "none", color: Colors.GRAY1 }}>
-                            Ongoing
-                        </Link>
-                    </Button>
+                    <Tooltip title="View all Upcoming contests" arrow enterDelay={500}>
+                        <Button sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16}}>
+                            <Link to="/" style={{ textDecoration: "none", color: Colors.GRAY1 }}>
+                                Upcoming
+                            </Link>
+                        </Button>
+                    </Tooltip>
+                    <Tooltip title="View all Ongoing contests" arrow enterDelay={500}>
+                        <Button sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16 }}>
+                            <Link to="/ongoing" style={{ textDecoration: "none", color: Colors.GRAY1 }}>
+                                Ongoing
+                            </Link>
+                        </Button>
+                    </Tooltip>
+                    <Tooltip title="Contribute" arrow enterDelay={500}>
+                        <IconButton 
+                            sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16, marginRight: 1 }}
+                            onClick={() => window.open('https://github.com/sahanmndl/UpCoding-Web', "_blank")}
+                        >
+                            <GitHub />
+                        </IconButton>
+                    </Tooltip>
                     <FormGroup>
                         <FormControlLabel
                             control={
