@@ -1,4 +1,5 @@
 import {
+    IconButton,
     Paper,
     Table,
     TableBody,
@@ -6,6 +7,7 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    Tooltip,
 } from '@mui/material';
 import Link from '@mui/material/Link';
 import React, { useEffect, useRef, useState } from 'react';
@@ -29,6 +31,8 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Colors from '../../utils/Colors';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { google } from "calendar-link";
 
 const Ongoing = ({ darkmode }) => {
 
@@ -43,6 +47,7 @@ const Ongoing = ({ darkmode }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     var options = ["ALL"];
 
+    //Fetch contests from API
     const fetchAllContests = async () => {
         try {
             const response = await fetch(`https://kontests.net/api/v1/all`);
@@ -57,47 +62,44 @@ const Ongoing = ({ darkmode }) => {
             setLoading(false);
             setRefresh(false);
         }
-    };
+    }
 
+    const keyGenerator = () =>
+        '_' + Math.random().toString(36).substr(2, 9)
+    /////////////////////////////////////
+
+    //Dropdown menu to filter contests
     contests.map((i) => {
         return options.push(i.site);
     })
     options = options.filter((v, i, a) => a.indexOf(v) === i)
 
-    const onRefresh = () => {
-        setRefresh(true);
-        fetchAllContests();
-    };
-
     const handleMenuItemClick = (event, index, option) => {
-        setSelectedIndex(index);
-        console.log(option);
-        setOpen(false);
+        setSelectedIndex(index)
+        setOpen(false)
         if (option !== "ALL") {
             setFilterContests(contests.filter((i) => {
-                console.log(i.site, option);
-                return i.site === option;
+                console.log(i.site, option)
+                return i.site === option
             }))
         } else {
-            setFilterContests(contests);
+            setFilterContests(contests)
         }
-    };
+    }
 
     const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
+        setOpen((prevOpen) => !prevOpen)
+    }
 
     const handleClose = (event) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
-            return;
+            return
         }
-
         setOpen(false);
-    };
-
-    const keyGenerator = () =>
-        '_' + Math.random().toString(36).substr(2, 9);
-
+    }
+    //////////////////////////////////////////
+    
+    //Display duration time
     const formatDurationTime = (s) => {
         let years = Math.floor(s / 31536000);
         let months = Math.floor((s % 31536000) / 2592000);
@@ -143,6 +145,7 @@ const Ongoing = ({ darkmode }) => {
 
         return ans;
     }
+    ///////////////////////////////////////
 
     useEffect(() => {
         fetchAllContests();
@@ -156,7 +159,8 @@ const Ongoing = ({ darkmode }) => {
                         <TableRow>
                             <TableCell style={{ fontWeight: '700' }}>Ongoing Contests</TableCell>
                             <TableCell align="right" style={{ fontWeight: '700' }}>
-                                Site :  <ButtonGroup variant="" color='info' ref={anchorRef} aria-label="split button">
+                                Site :  
+                                <ButtonGroup variant="" color='info' ref={anchorRef} aria-label="split button">
                                     <Button
                                         size="small"
                                         aria-controls={open ? 'split-button-menu' : undefined}
@@ -252,6 +256,27 @@ const Ongoing = ({ darkmode }) => {
                                                 {item.name}
                                             </p>
                                         </Link>
+                                        <Tooltip title="Add contest to calendar" arrow enterDelay={500}>
+                                            <IconButton onClick={() => {
+                                                window.open(
+                                                    google({
+                                                        title: item.name,
+                                                        start: item.start_time,
+                                                        end: item.end_time
+                                                    }),
+                                                    "_blank"
+                                                )
+                                            }}>
+                                                <CalendarMonthIcon 
+                                                    sx={{
+                                                        height: 20, 
+                                                        width: 20, 
+                                                        marginLeft: '1px',
+                                                        color: Colors.GRAY1
+                                                    }} 
+                                                />
+                                            </IconButton>
+                                        </Tooltip>
                                     </div>
                                 </TableCell>
                                 <TableCell align="right">

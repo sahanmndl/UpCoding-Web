@@ -119,7 +119,7 @@ const Header = ({ darkmode, toggle }) => {
                     </Tooltip>
                     <Tooltip title="Contribute" arrow enterDelay={500}>
                         <IconButton 
-                            sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16, marginRight: 1 }}
+                            sx={{color: Colors.GRAY1, marginRight: 1}}
                             onClick={() => window.open('https://github.com/sahanmndl/UpCoding-Web', "_blank")}
                         >
                             <GitHub />
