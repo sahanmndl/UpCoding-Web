@@ -1,4 +1,5 @@
 import {
+    IconButton,
     Paper,
     Table,
     TableBody,
@@ -6,6 +7,7 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    Tooltip,
 } from '@mui/material';
 import Link from '@mui/material/Link';
 import React, { useEffect, useRef, useState } from 'react';
@@ -29,6 +31,8 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Colors from '../../utils/Colors';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { google } from "calendar-link";
 
 const Upcoming = ({ darkmode }) => {
 
@@ -42,7 +46,8 @@ const Upcoming = ({ darkmode }) => {
     const [open, setOpen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(0);
     var options = ["ALL"];
-
+    
+    //Fetch Contests from API
     const fetchAllContests = async () => {
         try {
             const response = await fetch(`https://kontests.net/api/v1/all`);
@@ -58,15 +63,15 @@ const Upcoming = ({ darkmode }) => {
         }
     };
 
+    const keyGenerator = () =>
+    '_' + Math.random().toString(36).substr(2, 9);
+    //////////////////////////////////////////////
+
+    //Dropdown menu to filter contests
     contests.map((i) => {
         return options.push(i.site);
     })
     options = options.filter((v, i, a) => a.indexOf(v) === i)
-
-    const onRefresh = () => {
-        setRefresh(true);
-        fetchAllContests();
-    };
 
     const handleMenuItemClick = (event, index, option) => {
         setSelectedIndex(index);
@@ -93,11 +98,9 @@ const Upcoming = ({ darkmode }) => {
 
         setOpen(false);
     };
-
+    /////////////////////////////////////////////
     
-    const keyGenerator = () =>
-    '_' + Math.random().toString(36).substr(2, 9);
-    
+    //Display duration time
     const formatDurationTime = (s) => {
         let years = Math.floor(s / 31536000);
         let months = Math.floor((s % 31536000) / 2592000);
@@ -143,7 +146,8 @@ const Upcoming = ({ darkmode }) => {
         
         return ans;
     }
-    
+    ///////////////////////////////////////////////
+
     useEffect(() => {
         fetchAllContests();
     }, []);
@@ -156,7 +160,8 @@ const Upcoming = ({ darkmode }) => {
                         <TableRow>
                             <TableCell style={{ fontWeight: '700' }}>Upcoming Contests</TableCell>
                             <TableCell align="right" style={{ fontWeight: '700' }}>
-                                Site :  <ButtonGroup variant="" color='info' ref={anchorRef} aria-label="split button">
+                                Site :  
+                                <ButtonGroup variant="" color='info' ref={anchorRef} aria-label="split button">
                                     <Button
                                         size="small"
                                         aria-controls={open ? 'split-button-menu' : undefined}
@@ -169,9 +174,7 @@ const Upcoming = ({ darkmode }) => {
                                     </Button>
                                 </ButtonGroup>
                                 <Popper
-                                    sx={{
-                                        zIndex: 1,
-                                    }}
+                                    sx={{ zIndex: 1 }}
                                     open={open}
                                     anchorEl={anchorRef.current}
                                     role={undefined}
@@ -222,7 +225,7 @@ const Upcoming = ({ darkmode }) => {
                                 }}
                             >
                                 <TableCell component="th" scope="row">
-                                    <div style={{ alignItems: 'center', display: 'flex' }}>
+                                    <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'row' }}>
                                         <img
                                             src={item.site === "CodeChef" ? codechefLogo :
                                                 item.site === "CodeForces" ? codeforcesLogo :
@@ -252,6 +255,27 @@ const Upcoming = ({ darkmode }) => {
                                                 {item.name}
                                             </p>
                                         </Link>
+                                        <Tooltip title="Add contest to calendar" arrow enterDelay={500}>
+                                            <IconButton onClick={() => {
+                                                window.open(
+                                                    google({
+                                                        title: item.name,
+                                                        start: item.start_time,
+                                                        end: item.end_time
+                                                    }),
+                                                    "_blank"
+                                                )
+                                            }}>
+                                                <CalendarMonthIcon 
+                                                    sx={{
+                                                        height: 20, 
+                                                        width: 20, 
+                                                        marginLeft: '1px',
+                                                        color: Colors.GRAY1
+                                                    }} 
+                                                />
+                                            </IconButton>
+                                        </Tooltip>
                                     </div>
                                 </TableCell>
                                 <TableCell align="right">
