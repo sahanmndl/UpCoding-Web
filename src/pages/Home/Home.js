@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Upcoming from "../Contests/Upcoming";
 import Ongoing from "../Contests/Ongoing";
+import UserStats from "../UserStats/UserStats.js";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Error from "../Error404/Error"
@@ -58,6 +59,13 @@ const Home = () => {
             <>
               <Header darkmode={darkmode} toggle={toggle} /> 
               <Ongoing darkmode={darkmode} />
+            </>
+          }
+          />
+          <Route exact path="/userstats" element={
+            <>
+              <Header darkmode={darkmode} toggle={toggle} /> 
+              <UserStats darkmode={darkmode} />
             </>
           }
           />
