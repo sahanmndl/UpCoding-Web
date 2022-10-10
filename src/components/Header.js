@@ -65,7 +65,7 @@ const Header = ({ darkmode, toggle }) => {
                 background: darkmode ? "" : Colors.GRAY3,
                 paddingLeft: "7.5%",
                 paddingRight: "5.5%",
-                height: 55,
+                height: '8vh',
                 justifyContent: "center",
             }}
             position="static"
