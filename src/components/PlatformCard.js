@@ -8,7 +8,7 @@ const PlatformCard = ({ image, caption, darkmode }) => {
                 component="img"
                 height="150"
                 image={image}
-                sx={{objectFit: 'contain'}}
+                sx={{objectFit: 'contain', filter: darkmode && (caption === 'CodeChef') ?'invert(100)': 'invert(0)'}}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
