@@ -154,9 +154,9 @@ const Upcoming = ({ darkmode }) => {
 
     return (
         <div className="container">
-            <TableContainer component={Paper} style={{ width: '100%', boxShadow: darkmode ? '0 0 4px #757575' : '' }}>
-                <Table>
-                    <TableHead>
+            <TableContainer component={Paper} style={{ width: '100%', boxShadow: darkmode ? '0 0 4px #757575' : ''  }} sx={{ maxHeight: 510 }}>
+                <Table stickyHeader>
+                    <TableHead >
                         <TableRow>
                             <TableCell style={{ fontWeight: '700' }}>Upcoming Contests</TableCell>
                             <TableCell align="right" style={{ fontWeight: '700' }}>
