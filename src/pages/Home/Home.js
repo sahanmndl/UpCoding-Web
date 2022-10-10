@@ -96,25 +96,25 @@ const Home = () => {
       <Router>
         <Routes>
           <Route exact path="/" element={
-            <>
-              <Header darkmode={darkmode} toggle={toggle} /> 
-              <Upcoming darkmode={darkmode} />
-            </>
-          }
+              <>
+                <Header darkmode={darkmode} toggle={toggle} /> 
+                <Upcoming darkmode={darkmode} />
+              </>
+            }
           />
           <Route exact path="/ongoing" element={
-            <>
-              <Header darkmode={darkmode} toggle={toggle} /> 
-              <Ongoing darkmode={darkmode} />
-            </>
-          }
+              <>
+                <Header darkmode={darkmode} toggle={toggle} /> 
+                <Ongoing darkmode={darkmode} />
+              </>
+            }
           />
           <Route exact path="/userstats" element={
-            <>
-              <Header darkmode={darkmode} toggle={toggle} /> 
-              <UserStats darkmode={darkmode} />
-            </>
-          }
+              <>
+                <Header darkmode={darkmode} toggle={toggle} /> 
+                <UserStats darkmode={darkmode} />
+              </>
+            }
           />
           <Route exact path="/*" element={<Error/>} />
         </Routes>

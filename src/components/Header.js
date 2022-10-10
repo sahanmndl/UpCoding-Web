@@ -117,6 +117,20 @@ const Header = ({ darkmode, toggle }) => {
                             </Link>
                         </Button>
                     </Tooltip>
+                    <Tooltip title="View user statistics" arrow enterDelay={500}>
+                        <Button sx={{color: Colors.GRAY1, textTransform: "none", fontSize: 16}}>
+                            <Link 
+                                to="/userstats" 
+                                style={{ 
+                                    textDecoration: "none", 
+                                    color: location.pathname==="/userstats" ? darkmode ? 
+                                            Colors.WHITE : Colors.DARK : Colors.GRAY1
+                                }}
+                            >
+                                User Stats
+                            </Link>
+                        </Button>
+                    </Tooltip>
                     <Tooltip title="Contribute" arrow enterDelay={500}>
                         <IconButton 
                             sx={{color: Colors.GRAY1, marginRight: 1}}
