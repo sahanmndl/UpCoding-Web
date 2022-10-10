@@ -15,33 +15,27 @@ const darkTheme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          scrollbarColor: "#001F9C #F3F5FF",
+          scrollbarColor: "#686868 #686868",
           "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
-            backgroundColor: "#2F305F",
+            backgroundColor: "#424242",
           },
           "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
             borderRadius: 20,
-            backgroundColor: "#F3F5FF",
+            backgroundColor: "#636363",
             minHeight: 15,
-            border: "4px solid #BEE6F7",
-          },
-          "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
-            backgroundColor: "#2F305F",
-          },
-          "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
-            backgroundColor: "#00DA1A",
           },
           "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
-            backgroundColor: "#00DA1A",
+            backgroundColor: "#4F4F4F",
           },
           "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
-            backgroundColor: "#2b2b2b",
+            backgroundColor: "#686868",
           },
         },
       },
     },
   },
-});
+})
+
 const lightTheme = createTheme({
   palette: {
     mode: "light",
@@ -50,33 +44,26 @@ const lightTheme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          scrollbarColor: "#2b2b2b #13AD4C",
+          scrollbarColor: "#C1C1C1 #C1C1C1",
           "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
-            backgroundColor: "#E3F7EA",
+            backgroundColor: "#F1F1F1",
           },
           "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
             borderRadius: 20,
-            backgroundColor: "#00220C",
+            backgroundColor: "#C1C1C1",
             minHeight: 15,
-            border: "4px solid #2b2b2b",
-          },
-          "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
-            backgroundColor: "#F5FFF8",
-          },
-          "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
-            backgroundColor: "#2D59A1",
           },
           "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
-            backgroundColor: "#2D59A1",
+            backgroundColor: "#B5B5B5",
           },
           "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
-            backgroundColor: "#13AD4C",
+            backgroundColor: "#C1C1C1",
           },
         },
       },
-    },
-  },
-});
+    }
+  }
+})
 
 const Home = () => {
   
