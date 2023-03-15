@@ -9,7 +9,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you should install a package:
+In the project directory, you must install a package:
 
 ### `npm install`
 
