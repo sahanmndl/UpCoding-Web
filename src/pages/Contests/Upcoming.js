@@ -33,8 +33,13 @@ import MenuList from '@mui/material/MenuList';
 import Colors from '../../utils/Colors';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { google } from "calendar-link";
+import { Helmet } from 'react-helmet';
 
 const Upcoming = ({ darkmode }) => {
+    <Helmet>
+                <title>Contests in a week</title>
+                <meta name="upcoming-coding-contests" content="Stay updated on upcoming coding contests from Codechef, LeetCode, and Codeforces. Find information on contest dates, difficulty level, and more. Participate in online coding competitions and practice coding problems to prepare for the next contest."></meta>
+            </Helmet>
 
     const [contests, setContests] = useState([])
     const [filterContests, setFilterContests] = useState([])

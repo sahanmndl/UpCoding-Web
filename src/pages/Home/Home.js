@@ -6,7 +6,10 @@ import Ongoing from "../Contests/Ongoing";
 import UserStats from "../UserStats/UserStats.js";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import Error from "../Error404/Error"
+import Error from "../Error404/Error";
+import { Helmet } from "react-helmet";
+
+
 
 const darkTheme = createTheme({
   palette: {
@@ -92,6 +95,11 @@ const Home = () => {
 
   return (
     <ThemeProvider theme={darkmode ? darkTheme : lightTheme}>
+      <Helmet>
+                <title>UpCoding-Competetive Coding Contest</title>
+                <meta name="description" content="Find information on coding contests from Codechef, LeetCode, and Codeforces. Practice coding problems, participate in online coding competitions and read contest analysis and editorial."></meta>
+  <meta name="keywords" content="Coding contests, Competitive programming, Code challenges, Online coding competitions, Codeforces contests, LeetCode contests, Codechef contests, Algorithmic competitions, Programming puzzles, Practice coding problems, Problem-solving challenges, Programming contests schedule, Contest problem archives, Difficulty level categorization, Contest analysis and editorial"></meta>
+            </Helmet>
       <CssBaseline />
       <Router>
         <Routes>

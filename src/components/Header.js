@@ -8,6 +8,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
+
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
     height: 34,
@@ -137,6 +138,14 @@ const Header = ({ darkmode, toggle }) => {
                             onClick={() => window.open('https://github.com/sahanmndl/UpCoding-Web', "_blank")}
                         >
                             <GitHub />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Do practice" arrow enterDelay={500}>
+                    <IconButton 
+                            sx={{color: Colors.GRAY1, marginRight: 1}}
+                            onClick={() => window.open('https://practice.geeksforgeeks.org/', "_blank")}
+                        >
+                            Practice
                         </IconButton>
                     </Tooltip>
                     <FormGroup>
