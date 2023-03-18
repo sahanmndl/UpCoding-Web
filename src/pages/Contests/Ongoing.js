@@ -33,8 +33,14 @@ import MenuList from '@mui/material/MenuList';
 import Colors from '../../utils/Colors';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { google } from "calendar-link";
+import { Helmet } from 'react-helmet';
 
 const Ongoing = ({ darkmode }) => {
+    <Helmet>
+                <title>Contests Today</title>
+                <meta name="Keywords"  content=""></meta>
+                <meta name="description" content=""></meta>
+            </Helmet>
 
     const [contests, setContests] = useState([])
     const [filterContests, setFilterContests] = useState([])

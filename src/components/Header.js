@@ -8,6 +8,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
+
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
     height: 34,
@@ -131,6 +132,14 @@ const Header = ({ darkmode, toggle }) => {
                             </Link>
                         </Button>
                     </Tooltip>
+                    <Tooltip title="Practice" arrow enterDelay={500}>
+                    <IconButton 
+                            sx={{color: Colors.GRAY1, marginRight: 1,fontSize: 16}}
+                            onClick={() => window.open('https://practice.geeksforgeeks.org/explore?page=1&sortBy=submissions', "_blank")}
+                        >
+                            Practice
+                        </IconButton>
+                    </Tooltip>
                     <Tooltip title="Contribute" arrow enterDelay={500}>
                         <IconButton 
                             sx={{color: Colors.GRAY1, marginRight: 1}}
@@ -139,6 +148,9 @@ const Header = ({ darkmode, toggle }) => {
                             <GitHub />
                         </IconButton>
                     </Tooltip>
+                    
+                    <Tooltip title="Dark Mode "arrow enterDelay={500}>
+                        
                     <FormGroup>
                         <FormControlLabel
                             control={
@@ -150,6 +162,7 @@ const Header = ({ darkmode, toggle }) => {
                             }
                         />
                     </FormGroup>
+                    </Tooltip>
                 </Box>
             </Toolbar>
         </AppBar>

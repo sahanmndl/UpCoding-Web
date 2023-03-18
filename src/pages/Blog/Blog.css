@@ -1,0 +1,12 @@
+.Blog-container {
+    padding-left: 7.5%;
+    padding-right: 7.5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    height: 92vh;
+    max-width: 100vw;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
