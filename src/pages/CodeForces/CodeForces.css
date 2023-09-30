@@ -1,0 +1,30 @@
+.search-form {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  gap: 20px; /* Adjust the gap as needed */
+}
+
+.response-container {
+  padding-left: 7.5%;
+  padding-right: 7.5%;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+  display: flex;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.user-container {
+  gap: 20px;
+  width: 20%;
+}
+
+.rank-container {
+  width: 50%;
+}
+
+.Submission-container {
+  width: 30%;
+}
