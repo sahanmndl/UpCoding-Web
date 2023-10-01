@@ -1,9 +1,9 @@
 .search-form {
   margin-top: 20px;
   display: flex;
-  justify-content: center; /* Center items horizontally */
-  align-items: center; /* Center items vertically */
-  gap: 20px; /* Adjust the gap as needed */
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .response-container {
@@ -27,4 +27,10 @@
 
 .Submission-container {
   width: 30%;
+}
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  color: red;
 }

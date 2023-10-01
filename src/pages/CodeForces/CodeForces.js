@@ -15,6 +15,7 @@ const CodeForces = ({ darkmode }) => {
   const [result, setResult] = useState();
   const [rating, setRating] = useState();
   const [status, setStatus] = useState();
+  const [found, setFound] = useState(true);
   const handleChange = (event) => {
     setName(event.target.value);
   };
@@ -29,8 +30,12 @@ const CodeForces = ({ darkmode }) => {
       .then((response) => response.text())
       .then((result) => {
         setResult(JSON.parse(result).result[0]);
+        setFound(true);
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => {
+        setFound(false);
+        setResult(null);
+      });
 
     fetch(
       "https://codeforces.com/api/user.rating?" +
@@ -43,7 +48,7 @@ const CodeForces = ({ darkmode }) => {
       .then((result) => {
         setRating(JSON.parse(result).result);
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => setRating(null));
 
     fetch(
       "https://codeforces.com/api/user.status?" +
@@ -58,7 +63,7 @@ const CodeForces = ({ darkmode }) => {
       .then((result) => {
         setStatus(JSON.parse(result).result);
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => setStatus(null));
   };
 
   return (
@@ -70,7 +75,7 @@ const CodeForces = ({ darkmode }) => {
         }}
         noValidate
         autoComplete="off"
-        class="search-form"
+        className="search-form"
       >
         <TextField
           id="outlined-basic"
@@ -82,15 +87,15 @@ const CodeForces = ({ darkmode }) => {
           Search
         </Button>
       </Box>
-
-      <div class="response-container">
-        <div class="user-container">
+      {!found && <div className="error-container">User not found!</div>}
+      <div className="response-container">
+        <div className="user-container">
           {result && <UserInfo darkmode={darkmode} params={result} />}
         </div>
-        <div class="rank-container">
+        <div className="rank-container">
           {rating && <RankGraph darkmode={darkmode} params={rating} />}
         </div>
-        <div class="Submission-container">
+        <div className="Submission-container">
           {status && <SubmissionList darkmode={darkmode} params={status} />}
         </div>
       </div>

@@ -29,35 +29,36 @@ const UserInfo = ({ darkmode, params }) => {
 
       <div
         style={{
-          "margin-top": "10px",
-          "align-items": "center",
-          "font-weight": "bold",
+          marginTop: "10px",
+          alignItems: "center",
+          fontWeight: "bold",
           gap: "10px",
         }}
       >
         {params.firstName} {params.lastName}{" "}
-        <span
-          style={{
-            "font-size": "12px",
-          }}
-        >
-          @{params.handle}
-        </span>
       </div>
       <div
-        class="user-info"
         style={{
-          "margin-top": "10px",
+          fontSize: "12px",
+        }}
+      >
+        @{params.handle}
+      </div>
+      <div
+        className="user-info"
+        style={{
+          marginTop: "10px",
         }}
       >
         {candidate.map((info, index) => (
           <div
-            class="label"
+            key={"info-" + index}
+            className="label"
             style={{
               display: "grid",
-              "grid-template-columns": "150px auto",
+              gridTemplateColumns: "150px auto",
               gap: "10px",
-              "font-size": "12px",
+              fontSize: "12px",
             }}
           >
             {info.label}

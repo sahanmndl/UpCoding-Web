@@ -4,7 +4,14 @@ import { List, ListItem, ListItemText, Typography } from "@mui/material";
 const SubmissionList = ({ darkmode, params }) => {
   return (
     <>
-      <h2>Recent Submissions</h2>
+      <h2
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        Recent Submissions
+      </h2>
       <List
         sx={{
           width: "100%",
