@@ -3,7 +3,7 @@
 ![Screenshot (7)](https://user-images.githubusercontent.com/76529959/194722032-443708cb-4aa7-4fa7-b77d-0f021c8be0e1.png)
 ![Screenshot (8)](https://user-images.githubusercontent.com/76529959/194722042-b977982a-984b-489d-aac4-debbbd604803.png)
 
-Mobile App: (https://github.com/sahanmndl/UpCoding-Demo)
+Mobile App: (https://github.com/sahanmndl/UpCoding)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
