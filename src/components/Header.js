@@ -1,12 +1,13 @@
 import {React} from "react";
 import { Code, GitHub } from "@mui/icons-material";
-import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
+import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography, Menu, MenuItem, ListItemIcon} from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import Colors from "../utils/Colors";
 import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import { useState } from "react";
 
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -58,7 +59,21 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 const Header = ({ darkmode, toggle }) => {
 
-    const location = useLocation()
+    const location = useLocation();
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const handleMenuClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const handleMenuClose = () => {
+      setAnchorEl(null);
+    };
+  
+    const handleMenuItemClick = (url) => {
+      window.open(url, '_blank');
+      handleMenuClose();
+    };
 
     return (
         <AppBar
@@ -133,13 +148,37 @@ const Header = ({ darkmode, toggle }) => {
                         </Button>
                     </Tooltip>
                     <Tooltip title="Practice" arrow enterDelay={500}>
-                    <IconButton 
-                            sx={{color: Colors.GRAY1, marginRight: 1,fontSize: 16}}
-                            onClick={() => window.open('https://practice.geeksforgeeks.org/explore?page=1&sortBy=submissions', "_blank")}
+                        <IconButton
+                        aria-controls="dropdown-menu"
+                        aria-haspopup="true"
+                        onClick={handleMenuClick}
+                        sx={{ color: Colors.GRAY1, textTransform: 'none', fontSize: 16 }}
                         >
-                            Practice
+                        Practice
                         </IconButton>
                     </Tooltip>
+                    <Menu
+                        id="dropdown-menu"
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleMenuClose}
+                    >
+                        <MenuItem onClick={() => handleMenuItemClick('https://leetcode.com/problemset/all/')}>
+                            <ListItemIcon>
+                                <img src={require("../assets/leetcode.png")} alt="L" width="24" height="24" />
+                            </ListItemIcon>
+                            LeetCode</MenuItem>
+                        <MenuItem onClick={() => handleMenuItemClick('https://codeforces.com/problemset')}>
+                            <ListItemIcon>
+                                <img src={require("../assets/codeforces.png")} alt="C" width="24" height="24" />
+                            </ListItemIcon>
+                            Codeforces</MenuItem>
+                        <MenuItem onClick={() => handleMenuItemClick('https://practice.geeksforgeeks.org/explore?page=1&sortBy=submissions')}>
+                            <ListItemIcon>
+                                <img src={require("../assets/geeksforgeeks.png")} alt="G" width="24" height="24" />
+                            </ListItemIcon>
+                            GeeksForGeeks</MenuItem>
+                    </Menu>
                     <Tooltip title="Contribute" arrow enterDelay={500}>
                         <IconButton 
                             sx={{color: Colors.GRAY1, marginRight: 1}}
