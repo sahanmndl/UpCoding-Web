@@ -1,6 +1,8 @@
-import {React} from "react";
+import { React } from "react";
 import { Code, GitHub } from "@mui/icons-material";
-import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography, Menu, MenuItem, ListItemIcon} from "@mui/material";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
+import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography, Menu, MenuItem, ListItemIcon } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import Colors from "../utils/Colors";
 import { styled } from '@mui/material/styles';
@@ -8,7 +10,9 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { useState } from "react";
-
+import leetcode from "../assets/leetcode.png"
+import gfg from "../assets/geeksforgeeks.png"
+import codeforces from "../assets/codeforces.png"
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -46,7 +50,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-            "#fff"
+                "#fff"
             )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
         },
     },
@@ -61,18 +65,17 @@ const Header = ({ darkmode, toggle }) => {
 
     const location = useLocation();
     const [anchorEl, setAnchorEl] = useState(null);
-
     const handleMenuClick = (event) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
-  
+
     const handleMenuClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
-  
+
     const handleMenuItemClick = (url) => {
-      window.open(url, '_blank');
-      handleMenuClose();
+        window.open(url, '_blank');
+        handleMenuClose();
     };
 
     return (
@@ -92,10 +95,10 @@ const Header = ({ darkmode, toggle }) => {
                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                     <Code sx={{ marginRight: 1, color: darkmode ? "white" : Colors.DARK }} />
                     <Typography sx={{
-                            fontWeight: 700,
-                            color: darkmode ? "white" : Colors.DARK,
-                            textDecoration: "none",
-                        }}
+                        fontWeight: 700,
+                        color: darkmode ? "white" : Colors.DARK,
+                        textDecoration: "none",
+                    }}
                         variant="h6"
                         noWrap
                         component="a"
@@ -105,14 +108,14 @@ const Header = ({ darkmode, toggle }) => {
                     </Typography>
                 </Box>
                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                <Tooltip title="View all Upcoming contests" arrow enterDelay={500}>
-                        <Button sx={{color: Colors.GRAY1, textTransform: "none", fontSize: 16}}>
-                            <Link 
-                                to="/" 
-                                style={{ 
+                    <Tooltip title="View all Upcoming contests" arrow enterDelay={500}>
+                        <Button sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16 }}>
+                            <Link
+                                to="/"
+                                style={{
                                     textDecoration: "none",
-                                    color: location.pathname==="/" ? darkmode ? 
-                                            Colors.WHITE : Colors.DARK : Colors.GRAY1 
+                                    color: location.pathname === "/" ? darkmode ?
+                                        Colors.WHITE : Colors.DARK : Colors.GRAY1
                                 }}
                             >
                                 Upcoming
@@ -120,13 +123,13 @@ const Header = ({ darkmode, toggle }) => {
                         </Button>
                     </Tooltip>
                     <Tooltip title="View all Ongoing contests" arrow enterDelay={500}>
-                        <Button sx={{color: Colors.GRAY1, textTransform: "none", fontSize: 16}}>
-                            <Link 
-                                to="/ongoing" 
-                                style={{ 
-                                    textDecoration: "none", 
-                                    color: location.pathname==="/ongoing" ? darkmode ? 
-                                            Colors.WHITE : Colors.DARK : Colors.GRAY1
+                        <Button sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16 }}>
+                            <Link
+                                to="/ongoing"
+                                style={{
+                                    textDecoration: "none",
+                                    color: location.pathname === "/ongoing" ? darkmode ?
+                                        Colors.WHITE : Colors.DARK : Colors.GRAY1
                                 }}
                             >
                                 Ongoing
@@ -134,13 +137,13 @@ const Header = ({ darkmode, toggle }) => {
                         </Button>
                     </Tooltip>
                     <Tooltip title="View user statistics" arrow enterDelay={500}>
-                        <Button sx={{color: Colors.GRAY1, textTransform: "none", fontSize: 16}}>
-                            <Link 
-                                to="/userstats" 
-                                style={{ 
-                                    textDecoration: "none", 
-                                    color: location.pathname==="/userstats" ? darkmode ? 
-                                            Colors.WHITE : Colors.DARK : Colors.GRAY1
+                        <Button sx={{ color: Colors.GRAY1, textTransform: "none", fontSize: 16 }}>
+                            <Link
+                                to="/userstats"
+                                style={{
+                                    textDecoration: "none",
+                                    color: location.pathname === "/userstats" ? darkmode ?
+                                        Colors.WHITE : Colors.DARK : Colors.GRAY1
                                 }}
                             >
                                 User Stats
@@ -148,59 +151,73 @@ const Header = ({ darkmode, toggle }) => {
                         </Button>
                     </Tooltip>
                     <Tooltip title="Practice" arrow enterDelay={500}>
-                        <IconButton
-                        aria-controls="dropdown-menu"
-                        aria-haspopup="true"
-                        onClick={handleMenuClick}
-                        sx={{ color: Colors.GRAY1, textTransform: 'none', fontSize: 16 }}
+                        <Button
+                            aria-controls="dropdown-menu"
+                            aria-haspopup="true"
+                            onClick={handleMenuClick}
+                            sx={{ color: Colors.GRAY1, textTransform: 'none', fontSize: 16 }}
                         >
-                        Practice
-                        </IconButton>
+                            Practice
+                        </Button>
                     </Tooltip>
-                    <Menu
-                        id="dropdown-menu"
-                        anchorEl={anchorEl}
-                        open={Boolean(anchorEl)}
-                        onClose={handleMenuClose}
-                    >
-                        <MenuItem onClick={() => handleMenuItemClick('https://leetcode.com/problemset/all/')}>
-                            <ListItemIcon>
-                                <img src={require("../assets/leetcode.png")} alt="L" width="24" height="24" />
-                            </ListItemIcon>
-                            LeetCode</MenuItem>
-                        <MenuItem onClick={() => handleMenuItemClick('https://codeforces.com/problemset')}>
-                            <ListItemIcon>
-                                <img src={require("../assets/codeforces.png")} alt="C" width="24" height="24" />
-                            </ListItemIcon>
-                            Codeforces</MenuItem>
-                        <MenuItem onClick={() => handleMenuItemClick('https://practice.geeksforgeeks.org/explore?page=1&sortBy=submissions')}>
-                            <ListItemIcon>
-                                <img src={require("../assets/geeksforgeeks.png")} alt="G" width="24" height="24" />
-                            </ListItemIcon>
-                            GeeksForGeeks</MenuItem>
-                    </Menu>
+                    <div>
+                        <Button
+                            aria-controls="dropdown-menu"
+                            aria-haspopup="true"
+                            onClick={handleMenuClick}
+                            variant="text"
+                            style={{ color: Colors.GRAY1, textTransform: 'none', fontSize: 16, background: 'transparent', border: '0px' }}
+                        >
+                            <ArrowDropDownCircleIcon />
+                        </Button>
+                        <Menu
+                            id="dropdown-menu"
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleMenuClose}
+                        >
+                            <MenuItem onClick={() => handleMenuItemClick('https://leetcode.com/problemset/all/')}>
+                                <ListItemIcon>
+                                    <img src={leetcode} alt="L" width="24" height="24" />
+                                </ListItemIcon>
+                                <Typography variant="inherit">LeetCode</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={() => handleMenuItemClick('https://codeforces.com/problemset')}>
+                                <ListItemIcon>
+                                    <img src={codeforces} alt="C" width="24" height="24" />
+                                </ListItemIcon>
+                                <Typography variant="inherit">Codeforces</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={() => handleMenuItemClick('https://practice.geeksforgeeks.org/explore?page=1&sortBy=submissions')}>
+                                <ListItemIcon>
+                                    <img src={gfg} alt="G" width="24" height="24" />
+                                </ListItemIcon>
+                                <Typography variant="inherit">GeeksForGeeks</Typography>
+                            </MenuItem>
+                        </Menu>
+                    </div>
                     <Tooltip title="Contribute" arrow enterDelay={500}>
-                        <IconButton 
-                            sx={{color: Colors.GRAY1, marginRight: 1}}
+                        <IconButton
+                            sx={{ color: Colors.GRAY1, marginRight: 1 }}
                             onClick={() => window.open('https://github.com/sahanmndl/UpCoding-Web', "_blank")}
                         >
                             <GitHub />
                         </IconButton>
                     </Tooltip>
-                    
-                    <Tooltip title="Dark Mode "arrow enterDelay={500}>
-                        
-                    <FormGroup>
-                        <FormControlLabel
-                            control={
-                                <MaterialUISwitch
-                                    sx={{ m: 1 }}
-                                    checked={darkmode}
-                                    onChange={toggle}
-                                />
-                            }
-                        />
-                    </FormGroup>
+
+                    <Tooltip title="Dark Mode " arrow enterDelay={500}>
+
+                        <FormGroup>
+                            <FormControlLabel
+                                control={
+                                    <MaterialUISwitch
+                                        sx={{ m: 1 }}
+                                        checked={darkmode}
+                                        onChange={toggle}
+                                    />
+                                }
+                            />
+                        </FormGroup>
                     </Tooltip>
                 </Box>
             </Toolbar>
