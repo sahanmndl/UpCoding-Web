@@ -1,7 +1,6 @@
 import { React } from "react";
 import { Code, GitHub } from "@mui/icons-material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography, Menu, MenuItem, ListItemIcon } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import Colors from "../utils/Colors";
@@ -168,7 +167,7 @@ const Header = ({ darkmode, toggle }) => {
                             variant="text"
                             style={{ color: Colors.GRAY1, textTransform: 'none', fontSize: 16, background: 'transparent', border: '0px' }}
                         >
-                            <ArrowDropDownCircleIcon />
+                            <ArrowDropDownIcon />
                         </Button>
                         <Menu
                             id="dropdown-menu"
