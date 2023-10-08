@@ -40,7 +40,7 @@ const UserStats = ({ darkmode }) => {
           image={leetcodeLogo}
           caption="LeetCode"
           darkmode={darkmode}
-          children={"Let's Go"}
+          children={<Link to="/userstats/leetcode">Let's Go</Link>}
         />
       </Stack>
     </div>
