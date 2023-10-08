@@ -9,6 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Error from "../Error404/Error";
 import { Helmet } from "react-helmet";
 import CodeForces from "../CodeForces/CodeForces";
+import LeetCode from '../LeetCode/LeetCode';
 
 const darkTheme = createTheme({
   palette: {
@@ -139,6 +140,16 @@ const Home = () => {
               <>
                 <Header darkmode={darkmode} toggle={toggle} />
                 <CodeForces darkmode={darkmode} />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/userstats/leetcode"
+            element={
+              <>
+                <Header darkmode={darkmode} toggle={toggle} />
+                <LeetCode darkmode={darkmode} />
               </>
             }
           />
