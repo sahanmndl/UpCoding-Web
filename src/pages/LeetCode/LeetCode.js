@@ -4,6 +4,7 @@ import UserInfo from "../../components/LeetCode/UserInfo";
 import ProblemsGraph from "../../components/LeetCode/ProblemsGraph";
 import SubmissionList from "../../components/SubmissionList";
 import "./LeetCode.css";
+import Spinner from "../../components/Spinner.js";
 
 const LeetCode = ({ darkmode }) => {
   const requestOptions = {
@@ -12,13 +13,19 @@ const LeetCode = ({ darkmode }) => {
   };
 
   const [name, setName] = useState();
-  const [result, setResult] = useState();
-  const [found, setFound] = useState(true);
+  const [result, setResult] = useState({});
+  const [clicked, setClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const found = result.status === 'success'? true:false;
+
   const handleChange = (event) => {
     setName(event.target.value);
   };
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setClicked(true);
+    setLoading(true);
     fetch(
       "https://leetcode-stats-api.herokuapp.com/" + name,
       requestOptions
@@ -27,11 +34,11 @@ const LeetCode = ({ darkmode }) => {
       .then((result) => {
         result["username"] = name;
         setResult(result);
-        setFound(true);
+        setLoading(false);
       })
       .catch((error) => {
-        setFound(false);
-        setResult(null);
+        setResult({});
+        setLoading(false);
       });
 
       var query = `
@@ -66,7 +73,7 @@ const LeetCode = ({ darkmode }) => {
 
   return (
     <>
-      <Box
+      <Box onSubmit={handleSubmit}
         component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
@@ -81,12 +88,13 @@ const LeetCode = ({ darkmode }) => {
           variant="outlined"
           onChange={handleChange}
         />
-        <Button variant="contained" onClick={handleSubmit} size="large">
+        <Button variant="contained" type="submit" size="large">
           Search
         </Button>
       </Box>
-      {!found && <div className="error-container">User not found!</div>}
-      <div className="response-container">
+      {clicked && loading && <div className="spinner-container"><Spinner/></div>}
+      {clicked && !loading && !found && <div className="error-container">User not found!</div>}
+      {!loading && found && <div className="response-container">
         <div className="user-container">
           {result && <UserInfo darkmode={darkmode} params={result} />}
         </div>
@@ -96,7 +104,7 @@ const LeetCode = ({ darkmode }) => {
         {/* <div className="Submission-container">
           {status && <SubmissionList darkmode={darkmode} params={result} />}
         </div> */}
-      </div>
+      </div>}
     </>
   );
 };

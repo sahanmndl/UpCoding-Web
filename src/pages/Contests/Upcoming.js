@@ -34,6 +34,7 @@ import Colors from "../../utils/Colors";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { google } from "calendar-link";
 import { Helmet } from "react-helmet";
+import Spinner from "../../components/Spinner.js";
 
 const Upcoming = ({ darkmode }) => {
   <Helmet>
@@ -184,7 +185,8 @@ const Upcoming = ({ darkmode }) => {
 
   return (
     <div className="container">
-      <TableContainer
+      {loading && <Spinner/>}
+      {!loading && <TableContainer
         component={Paper}
         style={{ width: "100%", boxShadow: darkmode ? "0 0 4px #757575" : "" }}
       >
@@ -384,7 +386,7 @@ const Upcoming = ({ darkmode }) => {
             ))}
           </TableBody>
         </Table>
-      </TableContainer>
+      </TableContainer>}
     </div>
   );
 };
