@@ -6,6 +6,14 @@
   gap: 20px;
 }
 
+.spinner-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100px;
+}
+
 .response-container {
   padding-left: 7.5%;
   padding-right: 7.5%;

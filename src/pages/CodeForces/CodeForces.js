@@ -4,6 +4,7 @@ import UserInfo from "../../components/UserInfo";
 import RankGraph from "../../components/RankGraph";
 import SubmissionList from "../../components/SubmissionList";
 import "./CodeForces.css";
+import Spinner from "../../components/Spinner.js";
 
 const CodeForces = ({ darkmode }) => {
   const requestOptions = {
@@ -15,11 +16,16 @@ const CodeForces = ({ darkmode }) => {
   const [result, setResult] = useState();
   const [rating, setRating] = useState();
   const [status, setStatus] = useState();
-  const [found, setFound] = useState(true);
+  const [clicked, setClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (event) => {
     setName(event.target.value);
   };
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setClicked(true);
+    setLoading(true);
     fetch(
       "https://codeforces.com/api/user.info?" +
         new URLSearchParams({
@@ -30,10 +36,8 @@ const CodeForces = ({ darkmode }) => {
       .then((response) => response.text())
       .then((result) => {
         setResult(JSON.parse(result).result[0]);
-        setFound(true);
       })
       .catch((error) => {
-        setFound(false);
         setResult(null);
       });
 
@@ -62,13 +66,14 @@ const CodeForces = ({ darkmode }) => {
       .then((response) => response.text())
       .then((result) => {
         setStatus(JSON.parse(result).result);
+        setLoading(false);
       })
       .catch((error) => setStatus(null));
   };
 
   return (
     <>
-      <Box
+      <Box onSubmit={handleSubmit}
         component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
@@ -83,12 +88,13 @@ const CodeForces = ({ darkmode }) => {
           variant="outlined"
           onChange={handleChange}
         />
-        <Button variant="contained" onClick={handleSubmit} size="large">
+        <Button variant="contained" type="submit" size="large">
           Search
         </Button>
       </Box>
-      {!found && <div className="error-container">User not found!</div>}
-      <div className="response-container">
+      {clicked && loading && <div className="spinner-container"><Spinner/></div>}
+      {clicked && !loading && !result && <div className="error-container">User not found!</div>}
+      {!loading && result && <div className="response-container">
         <div className="user-container">
           {result && <UserInfo darkmode={darkmode} params={result} />}
         </div>
@@ -98,7 +104,7 @@ const CodeForces = ({ darkmode }) => {
         <div className="Submission-container">
           {status && <SubmissionList darkmode={darkmode} params={status} />}
         </div>
-      </div>
+      </div>}
     </>
   );
 };
