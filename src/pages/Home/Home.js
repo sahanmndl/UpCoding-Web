@@ -10,6 +10,8 @@ import Error from "../Error404/Error";
 import { Helmet } from "react-helmet";
 import CodeForces from "../CodeForces/CodeForces";
 import LeetCode from '../LeetCode/LeetCode';
+import Footer from "../../components/Footer";
+import { Box } from "@mui/material";
 
 const darkTheme = createTheme({
   palette: {
@@ -107,50 +109,55 @@ const Home = () => {
             exact
             path="/"
             element={
-              <>
+              <Box sx={{display :"flex",flexDirection:"column",minHeight: "100vh"}}>
                 <Header darkmode={darkmode} toggle={toggle} />
                 <Upcoming darkmode={darkmode} />
-              </>
+                <Footer darkmode={darkmode} />
+              </Box>
             }
           />
           <Route
             exact
             path="/ongoing"
             element={
-              <>
+              <Box sx={{display :"flex",flexDirection:"column",minHeight: "100vh"}}>
                 <Header darkmode={darkmode} toggle={toggle} />
                 <Ongoing darkmode={darkmode} />
-              </>
+                <Footer darkmode={darkmode} />
+              </Box>
             }
           />
           <Route
             exact
             path="/userstats"
             element={
-              <>
+              <Box sx={{display :"flex",flexDirection:"column",minHeight: "100vh"}}>
                 <Header darkmode={darkmode} toggle={toggle} />
                 <UserStats darkmode={darkmode} />
-              </>
+                <Footer darkmode={darkmode} />
+              </Box>
             }
           />
           <Route
             exact
             path="/userstats/codeforces"
             element={
-              <>
+              <Box sx={{display :"flex",flexDirection:"column",minHeight: "100vh"}}>
                 <Header darkmode={darkmode} toggle={toggle} />
                 <CodeForces darkmode={darkmode} />
-              </>
+                <Footer darkmode={darkmode} />
+              </Box>
             }
           />
           <Route
             exact
             path="/userstats/leetcode"
             element={
-              <>
+              <Box sx={{display :"flex",flexDirection:"column",minHeight: "100vh"}}>
                 <Header darkmode={darkmode} toggle={toggle} />
                 <LeetCode darkmode={darkmode} />
-              </>
+                <Footer darkmode={darkmode} />
+              </Box>
             }
           />
           <Route exact path="/*" element={<Error />} />
