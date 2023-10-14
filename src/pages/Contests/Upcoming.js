@@ -11,16 +11,7 @@ import {
 } from "@mui/material";
 import Link from "@mui/material/Link";
 import React, { useEffect, useRef, useState } from "react";
-import atcoderLogo from "../../assets/atcoder.png";
-import codechefLogo from "../../assets/codechef.png";
-import codeforcesLogo from "../../assets/codeforces.png";
-import csacademyLogo from "../../assets/csacademy.png";
-import googleLogo from "../../assets/google.png";
-import hackerearthLogo from "../../assets/hackerearth.png";
-import hackerrankLogo from "../../assets/hackerrank.png";
-import leetcodeLogo from "../../assets/leetcode.png";
-import topcoderLogo from "../../assets/topcoder.png";
-import placeholderLogo from "../../assets/placeholder.png";
+
 import "./Contests.css";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
@@ -31,9 +22,11 @@ import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import Colors from "../../utils/Colors";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { google } from "calendar-link";
 import { Helmet } from "react-helmet";
+import { formatDurationTime, formatDateTimeForCodeChef } from "../../Js/functions/duration_time";
+import { mapSiteToLogo } from "../../Js/functions/mapSiteToLogo";
+import { AddToCalendarButton } from 'add-to-calendar-button-react';
+
 
 const Upcoming = ({ darkmode }) => {
   <Helmet>
@@ -106,78 +99,28 @@ const Upcoming = ({ darkmode }) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
-  /////////////////////////////////////////////
 
   //Display duration time
-  const formatDurationTime = (s) => {
-    let years = Math.floor(s / 31536000);
-    let months = Math.floor((s % 31536000) / 2592000);
-    let days = Math.floor(((s % 31536000) % 2592000) / 86400);
-    let hours = Math.floor((s % (3600 * 24)) / 3600);
-    let minutes = Math.floor((s % 3600) / 60);
-    let seconds = Math.floor(s % 60);
+  // imported from functions
 
-    let ans = "";
-    if (years >= 1) {
-      if (years > 1) ans += years + " yrs ";
-      else if (years === 1) ans += years + " yr ";
-      if (months > 1) ans += months + " mos";
-      else if (months === 1) ans += months + " mo";
-    } else if (months >= 1) {
-      if (months > 1) ans += months + " mos ";
-      else if (months === 1) ans += months + " mo ";
-      if (days > 1) ans += days + " days";
-      else if (days === 1) ans += days + " day";
-    } else if (days >= 1) {
-      if (days > 1) ans += days + " days ";
-      else if (days === 1) ans += days + " day ";
-      if (hours > 1) ans += hours + " hrs";
-      else if (hours === 1) ans += hours + " hr";
-    } else {
-      hours = ("0" + hours).slice(-2);
-      minutes = ("0" + minutes).slice(-2);
-      seconds = ("0" + seconds).slice(-2);
-      ans = hours + ":" + minutes + ":" + seconds;
-    }
-
-    return ans;
-  };
-
-  function formatDateTimeForCodeChef(dateTimeString) {
-    const dateParts = dateTimeString.split(/[- :]/); // Split the string into parts
-    const year = parseInt(dateParts[0], 10);
-    const month = parseInt(dateParts[1], 10) - 1; // Month is zero-based
-    const day = parseInt(dateParts[2], 10);
-    const hours = parseInt(dateParts[3], 10);
-    const minutes = parseInt(dateParts[4], 10);
-    const seconds = parseInt(dateParts[5], 10);
-
-    const date = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
-
-    // Format the date as "7/10/2023"
-    const formattedDate = `${date.getDate()}/${
-      date.getMonth() + 1
-    }/${date.getFullYear()}`;
-
-    // Format the time as "5:30:00 pm"
-    const formattedTime = `${date.getHours() % 12 || 12}:${date
-      .getMinutes()
-      .toString()
-      .padStart(2, "0")}:${date.getSeconds().toString().padStart(2, "0")} ${
-      date.getHours() < 12 ? "am" : "pm"
-    }`;
-
-    // Combine the formatted date and time
-    const formattedDateTime = `${formattedDate}, ${formattedTime}`;
-
-    return formattedDateTime;
+  const convertTime = (site, time) => {
+    return site != "CodeChef"
+      ? new Date(time).toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+      })
+      : formatDateTimeForCodeChef(time)
   }
+  const returnTime = (site, time) => {
+    let convertedTime = convertTime(site, time).split(",")[1];
+    let timeArray = convertedTime.split(":");
+    if (timeArray[0].length === 1) timeArray[0] = "0" + timeArray[0];
+    let res = timeArray[0] + ":" + timeArray[1];
+    console.log(res);
+    return res;
 
-  ///////////////////////////////////////////////
-
+  }
   useEffect(() => {
     fetchAllContests();
   }, []);
@@ -287,27 +230,7 @@ const Upcoming = ({ darkmode }) => {
                     }}
                   >
                     <img
-                      src={
-                        item.site === "CodeChef"
-                          ? codechefLogo
-                          : item.site === "CodeForces"
-                          ? codeforcesLogo
-                          : item.site === "AtCoder"
-                          ? atcoderLogo
-                          : item.site === "TopCoder"
-                          ? topcoderLogo
-                          : item.site === "HackerRank"
-                          ? hackerrankLogo
-                          : item.site === "HackerEarth"
-                          ? hackerearthLogo
-                          : item.site === "LeetCode"
-                          ? leetcodeLogo
-                          : item.site === "Kick Start"
-                          ? googleLogo
-                          : item.site === "CS Academy"
-                          ? csacademyLogo
-                          : placeholderLogo
-                      }
+                      src={mapSiteToLogo(item.site)}
                       alt=""
                       width={18}
                       height={18}
@@ -338,44 +261,29 @@ const Upcoming = ({ darkmode }) => {
                       arrow
                       enterDelay={500}
                     >
-                      <IconButton
-                        onClick={() => {
-                          window.open(
-                            google({
-                              title: item.name,
-                              start: item.start_time,
-                              end: item.end_time,
-                            }),
-                            "_blank",
-                          );
-                        }}
-                      >
-                        <CalendarMonthIcon
-                          sx={{
-                            height: 20,
-                            width: 20,
-                            marginLeft: "1px",
-                            color: Colors.GRAY1,
-                          }}
-                        />
-                      </IconButton>
+                      <AddToCalendarButton
+                        name={item.name}
+                        options={['Apple', 'Google', 'Outlook.com']}
+                        location={item.site}
+                        startDate={item.start_time.substr(0, 10)}
+                        endDate={item.end_time.substr(0, 10)}
+                        startTime={() => returnTime(item.site, item.start_time)}
+                        endTime={() => returnTime(item.site, item.end_time)}
+                        timeZone="Asia/Kolkata"
+                        label=" "
+                        size="3"
+                        buttonStyle="3d"
+                        lightMode={darkmode ? "dark" : "light"}
+                      ></AddToCalendarButton>
                     </Tooltip>
                   </div>
                 </TableCell>
                 <TableCell align="right">{item.site}</TableCell>
                 <TableCell align="right">
-                  {item.site != "CodeChef"
-                    ? new Date(item.start_time).toLocaleString("en-IN", {
-                        timeZone: "Asia/Kolkata",
-                      })
-                    : formatDateTimeForCodeChef(item.start_time)}
+                  {convertTime(item.site, item.start_time)}
                 </TableCell>
                 <TableCell align="right">
-                  {item.site != "CodeChef"
-                    ? new Date(item.end_time).toLocaleString("en-IN", {
-                        timeZone: "Asia/Kolkata",
-                      })
-                    : formatDateTimeForCodeChef(item.end_time)}
+                  {convertTime(item.site, item.end_time)}
                 </TableCell>
                 <TableCell align="right">
                   {formatDurationTime(item.duration)}
